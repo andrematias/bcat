@@ -2,6 +2,9 @@
 Just a Ascii Cat to show the current currencies price from Binance.
 I was bored in a Saturday afternoon, so... That is it
 
+**Preview**
+![cat](./screenshot/cat.png)
+
 ### Requirements
 
 ## How to install
