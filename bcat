@@ -1,0 +1,59 @@
+#! /usr/bin/python
+import sys
+import requests
+
+
+def get_currency_price(ticket="BTCUSDT"):
+    response = requests.get(f'https://api.binance.com/api/v3/ticker/price?symbol={ticket}')
+    if response.status_code == 200:
+        return float(response.json()['price'])
+
+
+def cat_say(message):
+    the_cat = r"""
+                                      {}
+                     __     __,      /
+                      \,`~"~` /     /
+      .-=-.           /    . .\    /
+     / .-. \          (  =    Y)= /
+    (_/   \ \          \      /
+           \ \        _/`'`'`b
+            \ `.__.-'`        \-._
+             |            '.__ `'-;_
+             |            _.' `'-.__)
+              \    ;_..--'/     //  \
+              |   /  /   |     //    |
+              \  \ \__)   \   //    /
+               \__)        './/   .'
+                             `'-'`
+"If it isn't fun to you, don't do it"
+                           by Matias
+"""
+    print(the_cat.format(message))
+
+
+def main(ticket="BTCUSDT"):
+    color_scape = "\033[32;1;4m"
+    reset_color = "\033[0m"
+    currency_price = get_currency_price(ticket)
+    if currency_price:
+        cat_say(f"{ticket} = {color_scape}{currency_price:.2f}{reset_color}")
+    else:
+        print(f"Currency '{ticket}' not found")
+
+
+def help():
+    help_message = """
+Usage: btcat [ticket]
+ticket (optional) = A ticket like XRPUSDT. Default is BTCUSDT
+"""
+    print(help_message)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 2:
+        help()
+        sys.exit(1)
+
+    ticket = sys.argv[1] if len(sys.argv) == 2 else "BTCUSDT"
+    main(ticket)
