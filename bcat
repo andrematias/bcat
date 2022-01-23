@@ -44,7 +44,7 @@ def main(ticket="BTCUSDT"):
 
 def help():
     help_message = """
-Usage: btcat [ticket]
+Usage: bcat [ticket]
 ticket (optional) = A ticket like XRPUSDT. Default is BTCUSDT
 """
     print(help_message)
